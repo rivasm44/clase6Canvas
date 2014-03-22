@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Canvas</title>
+		<link rel="stylesheet" type="text/css" />
+		<style>
+			#lienzo {
+				border-style: solid;
+				border-width: 2px;
+			}
+		</style>
+		<script src="javascript/jquery-1.10.2.min.js"></script>
+		<script>
+			
+			$(function() {
+			    //obtenemos el canvas objeto del DOM
+			    var canvas = $("#lienzo")[0];
+			    //obtenemos el contexto para dibujar en 2D
+			    var contexto = canvas.getContext("2d");
+			    
+			    //definimos las propiedades de linea
+			    contexto.strokeStyle = "red";
+			    contexto.lineWidth = 5;
+			    contexto.lineCap = "square";
+			    contexto.fillStyle = "green";
+			    
+                //dibujamos
+                contexto.beginPath();//incia un camino
+				contexto.moveTo(23, 34);//punto inicial de la 1a linea
+				contexto.lineTo(100, 34);//final primera linea, e inicio de la 2da
+				contexto.lineTo(50, 100);//final de la 2da linea
+				contexto.closePath();//une el final de la 2da linea con el punto inicial		
+				//hacemos que se pinte lo que hemos dibujado
+				contexto.stroke();//marca el borde
+				contexto.fill();//rellena la figura
+				
+				//DIBUJAMOS AL ARCO
+				contexto.beginPath();
+                contexto.arc(300, 300, 150, 0, Math.PI,true);
+                contexto.stroke();
+                
+                //DIBUJAMOS AL RECTANGULO
+                contexto.rect(350, 20, 100, 50);
+                contexto.fill();
+                contexto.stroke();
+				
+				//pintamos letras
+                contexto.font = "85px Arial";
+                contexto.fillText("hola mundo", 23, 380);
+                contexto.strokeText("hola mundo", 23, 380);
+			});
+
+		</script>
+
+	</head>
+	<body>
+		<canvas id="lienzo" width="500" height="500" > </canvas>
+	</body>
+</html>
